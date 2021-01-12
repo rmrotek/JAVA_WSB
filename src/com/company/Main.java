@@ -1,8 +1,8 @@
 package com.company;
 
-import com.company.creatures.Animal;
 import com.company.creatures.Pet;
 import com.company.devices.Car;
+import com.company.devices.Diesel;
 import com.company.devices.Phone;
 
 public class Main {
@@ -25,7 +25,7 @@ public class Main {
 
         //zad 2
 
-        Car simpleCar = new Car("207", "peżot", 2000.00);
+        Car simpleCar = new Diesel("207", "peżot", 2000.00);
         Human simpleHuman = new Human();
         simpleHuman.assignCar(simpleCar);
 
@@ -37,8 +37,8 @@ public class Main {
         System.out.println("Current salary: " + simpleHuman.getSalary());
 
         // zad 5
-        Car cheapCar = new Car("cheap", "car", 50.00);
-        Car expensiveCar = new Car("expensive", "car", 100000.00);
+        Car cheapCar = new Diesel("cheap", "car", 50.00);
+        Car expensiveCar = new Diesel("expensive", "car", 100000.00);
 
         simpleHuman.setCar(simpleCar);
         System.out.println("Current car: " + simpleHuman.getCar().model);
@@ -48,8 +48,8 @@ public class Main {
         System.out.println("Current car: " + simpleHuman.getCar().model);
 
         //zad 6
-        Car someCar = new Car("some", "car", 50.00);
-        Car carEqualToSomeCar = new Car("some", "car", 50.00);
+        Car someCar = new Diesel("some", "car", 50.00);
+        Car carEqualToSomeCar = new Diesel("some", "car", 50.00);
         System.out.println("someCar: " + someCar);
         System.out.println("carEqualToSomeCar: " + carEqualToSomeCar);
         System.out.println("Compare same cars " + someCar.equals(carEqualToSomeCar)); // bez equals override bedzie false
@@ -70,7 +70,7 @@ public class Main {
         Human buyerHuman = new Human();
         Pet animalToSell = new Pet("dog");
         Phone phoneToSell = new Phone();
-        Car carToSell = new Car("model", "producer", 10.00);
+        Car carToSell = new Diesel("model", "producer", 10.00);
 
         // sell animal
         animalToSell.sell(sellerHuman, buyerHuman, 100.00); // no pet - fail

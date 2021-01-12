@@ -2,7 +2,7 @@ package com.company.devices;
 
 import com.company.Human;
 
-public class Car extends Device {
+public abstract class Car extends Device {
         public Double value;
 
     public Car(String model, String producer, Double value) {
@@ -53,4 +53,5 @@ public class Car extends Device {
             System.out.println("Transaction successful");
         }
     }
+    abstract void refuel();
 }
