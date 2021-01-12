@@ -57,5 +57,8 @@ public class Main {
         System.out.println("Car " + simpleCar.toString());
         System.out.println("Phone " + phone.toString());
 
+        // zad 7
+        phone.turnOn();
+        simpleCar.turnOn();
     }
 }
