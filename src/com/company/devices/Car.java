@@ -1,5 +1,7 @@
 package com.company.devices;
 
+import com.company.Human;
+
 public class Car extends Device {
         public Double value;
 
@@ -32,5 +34,23 @@ public class Car extends Device {
     @Override
     public void turnOn() {
         System.out.println("Car turned on");
+    }
+
+    @Override
+    public void sell(Human seller, Human buyer, Double price) {
+        Car car = seller.getCar();
+        Double buyerCash = buyer.getCash();
+
+        if (car == null){
+            System.out.println("Seller has no car, cant sell");
+        } else if (buyerCash < price) {
+            System.out.println("Buyer has no monies, cant sell");
+        } else {
+            buyer.deductCash(price);
+            seller.addCash(price);
+            seller.assignCar(null); // nie moge uzyc setCar bo sprawdza salary
+            buyer.assignCar(car);
+            System.out.println("Transaction successful");
+        }
     }
 }

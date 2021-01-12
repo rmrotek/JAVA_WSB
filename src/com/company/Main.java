@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         // zad 1
-        Animal smallDog = new Animal("S");
+        Animal smallDog = new Animal("mouse");
 
         smallDog.feed();
         smallDog.takeForAWalk();
@@ -60,5 +60,39 @@ public class Main {
         // zad 7
         phone.turnOn();
         simpleCar.turnOn();
+
+        // zad 8
+
+        Human sellerHuman = new Human();
+        Human buyerHuman = new Human();
+        Animal animalToSell = new Animal("dog");
+        Phone phoneToSell = new Phone();
+        Car carToSell = new Car("model", "producer", 10.00);
+
+        // sell animal
+        animalToSell.sell(sellerHuman, buyerHuman, 100.00); // no pet - fail
+        sellerHuman.setPet(animalToSell);
+
+        animalToSell.sell(sellerHuman, buyerHuman, 100.00); // no cash - fail
+        buyerHuman.setCash(200.00);
+
+        animalToSell.sell(sellerHuman, buyerHuman, 100.00); // success
+
+        // sell phone
+        phoneToSell.sell(sellerHuman, buyerHuman, 100.00); // no phone - fail
+        sellerHuman.setPhone(phoneToSell);
+
+        phoneToSell.sell(sellerHuman, buyerHuman, 100.00); // success
+
+        phoneToSell.sell(sellerHuman, buyerHuman, 100.00); // no phone - fail
+
+        // sell car
+        carToSell.sell(sellerHuman, buyerHuman, 100.00); // no car - fail
+        sellerHuman.assignCar(carToSell);
+
+        carToSell.sell(sellerHuman, buyerHuman, 100.00); // no cash - fail
+        buyerHuman.setCash(200.00);
+
+        carToSell.sell(sellerHuman, buyerHuman, 100.00); // no phone - fail
     }
 }
