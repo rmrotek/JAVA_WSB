@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.devices.Car;
+
 import java.util.Date;
 
 public class Human {
@@ -49,6 +51,10 @@ public class Human {
         } else {
             System.out.println("You are too poor for this, get a better job");
         }
+    }
+
+    public String toString() {
+       return "salary: "+ salary + " car " + car;
     }
 
 }

@@ -43,4 +43,8 @@ public class Animal {
             System.out.println("Your Doggo just died you cruel bastard");
         }
     }
+
+    public String toString() {
+        return "species " +species + " weight " + weight;
+    }
 }
