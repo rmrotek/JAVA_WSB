@@ -1,6 +1,9 @@
-package com.company;
+package com.company.creatures;
 
-public class Animal implements Sellable {
+import com.company.Human;
+import com.company.Sellable;
+
+public abstract class Animal implements Sellable, Feedable {
     final String species;
     private Double weight;
     private boolean isAlive = true;
@@ -17,7 +20,7 @@ public class Animal implements Sellable {
         }
     }
 
-    void feed() {
+    public void feed() {
         if (this.isAlive) {
             this.weight++;
             System.out.println("Animal successfully fed - current weight: " + this.weight);
@@ -27,7 +30,7 @@ public class Animal implements Sellable {
         }
     }
 
-    void takeForAWalk() {
+    public void takeForAWalk() {
         if (this.isAlive) {
             this.weight--;
             System.out.println("Animal successfully taken for a talk - current weight: " + this.weight);

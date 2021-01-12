@@ -1,6 +1,5 @@
 package com.company.devices;
 
-import com.company.Animal;
 import com.company.Human;
 
 public class Phone extends Device {
