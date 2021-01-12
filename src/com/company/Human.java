@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Human {
     Animal pet;
-    Car car;
+    private Car car;
     private Double salary;
     private Date lastDate;
     private Double lastSalary;
@@ -33,4 +33,22 @@ public class Human {
 
         }
     }
+    Car getCar(){
+        return this.car;
+    }
+    void setCar(Car newCar){
+        Double carValue = newCar.value;
+        Double salary = this.salary;
+
+        if (salary > carValue) {
+            System.out.println("Car bought for cash");
+            this.car = newCar;
+        } else if (salary > carValue/12) {
+            System.out.println("Car bought for cash loan");
+            this.car = newCar;
+        } else {
+            System.out.println("You are too poor for this, get a better job");
+        }
+    }
+
 }
