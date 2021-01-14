@@ -25,9 +25,8 @@ public class Main {
 
         //zad 2
 
-        Car simpleCar = new Diesel("207", "peżot", 2000.00);
-        Human simpleHuman = new Human();
-        simpleHuman.assignCar(simpleCar);
+        Car simpleCar = new Diesel("207", "peżot", 2000.00, 2000);
+        Human simpleHuman = new Human(5000.00, 1500.00); // zad 11
 
         //zad 3 i 4
         System.out.println("Current salary: " + simpleHuman.getSalary());
@@ -37,19 +36,20 @@ public class Main {
         System.out.println("Current salary: " + simpleHuman.getSalary());
 
         // zad 5
-        Car cheapCar = new Diesel("cheap", "car", 50.00);
-        Car expensiveCar = new Diesel("expensive", "car", 100000.00);
+        Car cheapCar = new Diesel("cheap", "car", 50.00, 2000);
+        Car expensiveCar = new Diesel("expensive", "car", 100000.00, 2000);
 
-        simpleHuman.setCar(simpleCar);
-        System.out.println("Current car: " + simpleHuman.getCar().model);
-        simpleHuman.setCar(cheapCar);
-        System.out.println("Current car: " + simpleHuman.getCar().model);
-        simpleHuman.setCar(expensiveCar);
-        System.out.println("Current car: " + simpleHuman.getCar().model);
+        // kontynuacja zad 5 + pozniejsze zad 11
+        simpleHuman.setCar(simpleCar, 0);
+        System.out.println("Current car: " + simpleHuman.getCar(0).model);
+        simpleHuman.setCar(cheapCar, 0);
+        System.out.println("Current car: " + simpleHuman.getCar(0).model);
+        simpleHuman.setCar(expensiveCar, 0);
+        System.out.println("Current car: " + simpleHuman.getCar(0).model);
 
         //zad 6
-        Car someCar = new Diesel("some", "car", 50.00);
-        Car carEqualToSomeCar = new Diesel("some", "car", 50.00);
+        Car someCar = new Diesel("some", "car", 50.00, 2000);
+        Car carEqualToSomeCar = new Diesel("some", "car", 50.00, 2000);
         System.out.println("someCar: " + someCar);
         System.out.println("carEqualToSomeCar: " + carEqualToSomeCar);
         System.out.println("Compare same cars " + someCar.equals(carEqualToSomeCar)); // bez equals override bedzie false
@@ -66,11 +66,11 @@ public class Main {
 
         // zad 8
 
-        Human sellerHuman = new Human();
-        Human buyerHuman = new Human();
+        Human sellerHuman = new Human(5000.00, 1500.00); // zad 11
+        Human buyerHuman = new Human(5000.00, 1500.00); // zad 11
         Pet animalToSell = new Pet("dog");
         Phone phoneToSell = new Phone();
-        Car carToSell = new Diesel("model", "producer", 10.00);
+        Car carToSell = new Diesel("model", "producer", 10.00, 2000);
 
         // sell animal
         animalToSell.sell(sellerHuman, buyerHuman, 100.00); // no pet - fail
@@ -91,7 +91,7 @@ public class Main {
 
         // sell car
         carToSell.sell(sellerHuman, buyerHuman, 100.00); // no car - fail
-        sellerHuman.assignCar(carToSell);
+        sellerHuman.setCar(carToSell, 0);
 
         carToSell.sell(sellerHuman, buyerHuman, 100.00); // no cash - fail
         buyerHuman.setCash(200.00);
@@ -99,5 +99,16 @@ public class Main {
         carToSell.sell(sellerHuman, buyerHuman, 100.00); // no phone - fail
 
 
+        // zad 11
+        Human humanDefault = new Human(5000.00, 4000.00);
+        Human humanGarage = new Human(5000.00, 4000.00, 4);
+
+        System.out.println("Garage value: " + humanDefault.getGarageValue());
+        System.out.println("Garage value: " + humanGarage.getGarageValue());
+        humanDefault.sortCars();
+
+        Car anotherCarToSell = new Diesel("model1", "prod1", 1500.00, 2000); // taki sam jak domyslny u Humana
+
+        anotherCarToSell.sell(humanDefault, humanGarage, 100.0);
     }
 }

@@ -2,13 +2,14 @@ package com.company.devices;
 
 import com.company.Human;
 
-public abstract class Car extends Device {
-        public Double value;
+import java.util.Arrays;
 
-    public Car(String model, String producer, Double value) {
+public abstract class Car extends Device {
+
+    public Car(String model, String producer, Double value, int yearOfProduction) {
         this.model = model;
         this.producer = producer;
-        this.yearOfProduction = 2020;
+        this.yearOfProduction = yearOfProduction;
         this.value = value;
     }
 
@@ -28,7 +29,7 @@ public abstract class Car extends Device {
     }
 
     public String toString() {
-        return "model "+ model + " producer " + producer + " value " + value;
+        return "model " + model + " producer " + producer + " yearOfProduction " + yearOfProduction + " value " + value;
     }
 
     @Override
@@ -38,20 +39,43 @@ public abstract class Car extends Device {
 
     @Override
     public void sell(Human seller, Human buyer, Double price) {
-        Car car = seller.getCar();
         Double buyerCash = buyer.getCash();
+        Car[] sellerGarage = seller.getGarage();
+        Car[] buyerGarage = buyer.getGarage();
+        int sellerCarSpot = -1;
+        for (int i = 0; i < sellerGarage.length; i++) {
+            if (this.equals(sellerGarage[i])) {
+                sellerCarSpot = i;
+                break;
+            }
+        }
+        int buyerFreeSpot = -1;
 
-        if (car == null){
+        for (int i = 0; i < buyerGarage.length; i++) {
+            if (buyerGarage[i] == null) {
+                buyerFreeSpot = i;
+                break;
+            }
+        }
+
+        if (sellerCarSpot < 0) {
             System.out.println("Seller has no car, cant sell");
+        } else if (buyerFreeSpot < 0) {
+            System.out.println("Buyer has no room in garage, cant sell");
         } else if (buyerCash < price) {
             System.out.println("Buyer has no monies, cant sell");
         } else {
             buyer.deductCash(price);
+            buyerGarage[buyerFreeSpot] = this;
             seller.addCash(price);
-            seller.assignCar(null); // nie moge uzyc setCar bo sprawdza salary
-            buyer.assignCar(car);
+            sellerGarage[sellerCarSpot] = null;
             System.out.println("Transaction successful");
+
+            System.out.println("Seller Garage" + Arrays.toString(sellerGarage));
+            System.out.println("Buyer Garage" + Arrays.toString(buyerGarage));
+
         }
     }
+
     abstract void refuel();
 }
