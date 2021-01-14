@@ -6,10 +6,20 @@ import java.util.Arrays;
 
 public abstract class Car extends Device {
 
-    public Car(String model, String producer, Double value, int yearOfProduction) {
+    private Human[] carOwners;
+
+       public Car(String model, String producer, Double value, int yearOfProduction, Human owner) {
         this.model = model;
         this.producer = producer;
         this.yearOfProduction = yearOfProduction;
+        this.value = value;
+        this.carOwners = new Human[]{owner};
+    }
+
+    public Car(String model, String producer, Double value, int year) {
+        this.model = model;
+        this.producer = producer;
+        this.yearOfProduction = year;
         this.value = value;
     }
 
@@ -29,7 +39,7 @@ public abstract class Car extends Device {
     }
 
     public String toString() {
-        return "model " + model + " producer " + producer + " yearOfProduction " + yearOfProduction + " value " + value;
+        return "model " + model + " producer " + producer + " yearOfProduction " + yearOfProduction + " value " + value + " owners " + carOwners;
     }
 
     @Override

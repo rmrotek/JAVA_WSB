@@ -22,7 +22,7 @@ public class Human {
     public Human(Double salary, Double cash) {
         this.salary = salary;
         this.cash = cash;
-        this.garage = new Car[]{new Diesel("model1", "prod1", 1500.00, 2000), new Electric("model2", "prod2", 2500.00, 1900)};
+        this.garage = new Car[]{new Diesel("model1", "prod1", 1500.00, 2000, this), new Diesel("model2", "prod2", 2500.00, 1900, this)};
     }
 
     public Human(Double salary, Double cash, int garageCapacity) {
